@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Employee List</h1>
+    <a href="/employees/new" class="btn btn-primary mb-3">Add New Employee</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.jobTitle}"></td>
+            <td>
+                <a th:href="@{/employees/{id}(id=${employee.id})}" class="btn btn-info btn-sm">View</a>
+                <a th:href="@{/employees/{id}/edit(id=${employee.id})}" class="btn btn-warning btn-sm">Edit</a>
+                <form th:action="@{/employees/{id}/delete(id=${employee.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-secondary">Back to Home</a>
+</div>
+</body>
+</html>

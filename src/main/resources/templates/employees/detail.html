@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Employee Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${employee.name}"></h5>
+            <p class="card-text">Email: <span th:text="${employee.email}"></span></p>
+            <p class="card-text">Job Title: <span th:text="${employee.jobTitle}"></span></p>
+            <p class="card-text">Salary: <span th:text="${employee.salary}"></span></p>
+        </div>
+    </div>
+    <h2 class="mt-4">Assigned Tasks</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${employee.tasks}">
+            <td th:text="${task.title}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.deadline}"></td>
+            <td th:text="${task.status}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/employees/{id}/edit(id=${employee.id})}" class="btn btn-warning">Edit</a>
+    <a href="/employees" class="btn btn-secondary">Back to List</a>
+</div>
+</body>
+</html>

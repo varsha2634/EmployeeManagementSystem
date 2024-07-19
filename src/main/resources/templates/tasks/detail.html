@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Task Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${task.title}"></h5>
+            <p class="card-text">Description: <span th:text="${task.description}"></span></p>
+            <p class="card-text">Deadline: <span th:text="${task.deadline}"></span></p>
+            <p class="card-text">Status: <span th:text="${task.status}"></span></p>
+            <p class="card-text">Assigned To: <span th:text="${task.employee != null} ? ${task.employee.name} : 'Unassigned'"></span></p>
+        </div>
+    </div>
+    <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-warning mt-3">Edit</a>
+    <a href="/tasks" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+</body>
+</html>
